@@ -1,14 +1,14 @@
 ## Deep dive into performance benchmarking and optimization
------------------------------------------------------------
 
 ### Outline
------------
 
 The operator used in this training session is based on simplfications of the
 systems presented in:
-*Self-adjoint, energy-conserving second-order pseudoacoustic systems for VTI and TTI media for reverse migration and full-waveform inversion*
-_(2016) Kenneth Bube, John Washbourne, Raymond Ergas, and Tamas Nemeth SEG_
-[Technical Program Expanded Abstracts](https://library.seg.org/doi/10.1190/segam2016-13878451.1)
+
+_Self-adjoint, energy-conserving second-order pseudoacoustic systems for VTI
+and TTI media for reverse migration and full-waveform inversion (2016). Kenneth
+Bube, John Washbourne, Raymond Ergas, and Tamas Nemeth SEG_. [Technical Program
+Expanded Abstracts](https://library.seg.org/doi/10.1190/segam2016-13878451.1)
 
 In particular, we will use the TTI self-adjoint variable-density
 forward-propagating operator:
@@ -18,7 +18,7 @@ forward-propagating operator:
 * We focus on the *stencil part of the propagator*, that is the loops and
   expressions that Devito generates given the finite-difference approximation
   of the TTI partial differential equations expressed in the DSL. 
-* Severa simplifications made to remove what would be noise in this tutorial:
+* Several simplifications made to remove what would be noise in this tutorial:
   * "Dummy" datasets (e.g., all material parameters initialized to constant
     values), but such that the simulation output remains finite;
   * No boundary conditions;
@@ -28,7 +28,6 @@ forward-propagating operator:
 
 
 ### Login
----------
 
 You will login to a VM in the Azure Cloud that has been pre-configured with all
 the necessary to run the TTI demo on a GPU (either an NVidia V100 or A100).
@@ -49,9 +48,7 @@ where either `X=acc` or `X=cuda`. The former will create a docker container
 where Devito generates OpenACC code, while the latter targets CUDA.
 
 
-
 ### Run the TTI demo
---------------------
 
 As easy as:
 
@@ -71,7 +68,6 @@ Operator performance available
 
 
 ### Hack the TTI demo
----------------------
 
 The TTI demo tells you where the generated code is stashed. Run it, and you'll
 see a message along the lines of:
@@ -99,7 +95,6 @@ More on the JIT backdoor available
 
 
 ### On the CUDA backend
------------------------
 
 At the time of this training session, the CUDA backend in DevitoPRO is still in
 its infancy. It will generate functioning code for the TTI demo, but
