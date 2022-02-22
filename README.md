@@ -101,3 +101,8 @@ its infancy. It will generate functioning code for the TTI demo, but
 performance-wise it is still borked in all sort of ways. This makes it an
 interesting starting point for a performance optimization exercise based on
 profiling (NVidia NSight Compute) and manual hacking via the JIT backdoor.
+
+
+### NVidia training
+
+[Hand ball over to NVidia]
