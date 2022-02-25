@@ -10,11 +10,10 @@ and TTI media for reverse migration and full-waveform inversion (2016). Kenneth
 Bube, John Washbourne, Raymond Ergas, and Tamas Nemeth SEG_. [Technical Program
 Expanded Abstracts](https://library.seg.org/doi/10.1190/segam2016-13878451.1)
 
-In particular, we will use the TTI self-adjoint variable-density
-forward-propagating operator:
+In particular, we will use a simplified version of the TTI self-adjoint
+variable-density forward-propagating operator:
 
-* This is an excellent *use case from industry*, which represents the bulk of a
-  wave solver close to what would be used in a production environment.
+* This is a notable proxy of code used in production.
 * We focus on the *stencil part of the propagator*, that is, the loops and
   expressions that Devito generates given the finite-difference approximation
   of the TTI partial differential equations expressed in the DSL. 
@@ -67,7 +66,7 @@ bugs, some of which will be analyzed and fixed in this training session.
 As easy as:
 
 ```
-cd demos/tti_acoustic_self_adjoint/
+cd demos/dummy_benchmark
 python run.py -d 412 423 476 -nt 200 --broken-mpirun True
 ```
 
