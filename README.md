@@ -35,7 +35,14 @@ the necessary to run the TTI demo on a GPU (either an NVidia V100 or A100).
 To login:
 
 ```
-ssh ...
+ssh ampere0001928a98.southcentralus.cloudapp.azure.com
+ssh ampere000244084a.southcentralus.cloudapp.azure.com
+ssh ampere0003a913e1.southcentralus.cloudapp.azure.com
+ssh ampere000404a8be.southcentralus.cloudapp.azure.com
+ssh ampere000580524d.southcentralus.cloudapp.azure.com
+ssh ampere0006c4bfa3.southcentralus.cloudapp.azure.com
+ssh ampere00072edd0c.southcentralus.cloudapp.azure.com
+ssh ampere0008e73259.southcentralus.cloudapp.azure.com
 ```
 
 To spawn the docker container from which you'll run the demo:
