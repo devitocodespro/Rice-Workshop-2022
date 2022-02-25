@@ -2,7 +2,7 @@
 
 ### Outline
 
-The operator used in this training session is based on simplfications of the
+The operator used in this training session is based on simplifications of the
 systems presented in:
 
 _Self-adjoint, energy-conserving second-order pseudoacoustic systems for VTI
@@ -15,7 +15,7 @@ forward-propagating operator:
 
 * This is an excellent *use case from industry*, which represents the bulk of a
   wave solver close to what would be used in a production environment.
-* We focus on the *stencil part of the propagator*, that is the loops and
+* We focus on the *stencil part of the propagator*, that is, the loops and
   expressions that Devito generates given the finite-difference approximation
   of the TTI partial differential equations expressed in the DSL. 
 * Several simplifications made to remove what would be noise in this tutorial:
@@ -29,10 +29,10 @@ forward-propagating operator:
 
 ### Login
 
-You will login to a VM in the Azure Cloud that has been pre-configured with all
+You will log in to a VM in the Azure Cloud that has been pre-configured with all
 the necessary to run the TTI demo on a GPU (either an NVidia V100 or A100).
 
-To login:
+To log in:
 
 ```
 ssh ampere0001928a98.southcentralus.cloudapp.azure.com
@@ -48,11 +48,18 @@ ssh ampere0008e73259.southcentralus.cloudapp.azure.com
 To spawn the docker container from which you'll run the demo:
 
 ```
-docker container run ... Dockerfile.nvidia.run.X ...
+docker run --gpus all --rm -it devitopro:nvidia.run.YYYY
 ```
 
-where either `X=acc` or `X=cuda`. The former will create a docker container
-where Devito generates OpenACC code, while the latter targets CUDA.
+Replace `YYYY` with either `acc` or `cuda`. This will create and take you to a
+fresh Docker container where Devito:
+
+* `YYYY=acc`: generates OpenACC,
+* `YYYY=cuda`: generates CUDA
+
+The CUDA backend is, however, still in its infancy. It generates functioning
+code for our running example, but it still suffers from several performance
+bugs, some of which will be analyzed and fixed in this training session.
 
 
 ### Run the TTI demo
@@ -61,17 +68,24 @@ As easy as:
 
 ```
 cd demos/tti_acoustic_self_adjoint/
-python run.py -d 412 423 476 -tn 200
+python run.py -d 412 423 476 -nt 200 --broken-mpirun True
 ```
 
-This will run a the TTI demo on a `412x423x476` grid for `200` timesteps. The
-docker container from which you run has already set all the necessary
-environment variables such that Devito generates and runs GPU code.
+This will run the TTI demo on a `412x423x476` grid for `200` timesteps.
 
 Some performance metrics, including GFlops/s and GPoints/s, will be emitted to
 standard output when the simulation terminates. More info about the Devito
 Operator performance available
 [here](https://github.com/devitocodes/devito/wiki/FAQ#is-there-a-way-to-get-the-performance-of-an-operator).
+
+If targeting CUDA, please run with
+
+```
+CUDA_LAUNCH_BLOCKING=1 python run.py ...
+```
+
+for meaningful performance data, otherwise the CUDA kernels in the timed
+regions will run asynchronously, making it look like their cost is almost zero.
 
 
 ### Hack the TTI demo
@@ -85,29 +99,20 @@ Operator `TTISelfAdjointForward` jit-compiled
 2.95 s with `NvidiaCompiler`
 ```
 
-You can edit the generated file and test your changes thanks to the "JIT
+You can edit the generated file and test your changes through to the "JIT
 backdoor" -- a mechanism in Devito that allows users and developers to test
-their own hacks directly without having to interfere with the Devito compiler.
+their hacks directly without having to interfere with the Devito compiler.
 So, make your edits, save the file, and re-run as:
 
 ```
 DEVITO_JIT_BACKDOOR=1 python run.py -d 412 423 476 -tn 200
 ```
 
-You may start, for example, by adding a `printf` prior to the time loop, just
+You may start, for example, by adding a `printf` before the time loop, just
 to get familiar with this feature.
 
 More on the JIT backdoor available
 [here](https://github.com/devitocodes/devito/wiki/FAQ#can-i-manually-modify-the-c-code-generated-by-devito-and-test-these-modifications).
-
-
-### On the CUDA backend
-
-At the time of this training session, the CUDA backend in DevitoPRO is still in
-its infancy. It will generate functioning code for the TTI demo, but
-performance-wise it is still borked in all sort of ways. This makes it an
-interesting starting point for a performance optimization exercise based on
-profiling (NVidia NSight Compute) and manual hacking via the JIT backdoor.
 
 
 ### NVidia training
