@@ -31,35 +31,32 @@ variable-density forward-propagating operator:
 You will log in to a VM in the Azure Cloud that has been pre-configured with all
 the necessary to run the TTI demo on an A100 GPU.
 
-To log in, first go this page and find yourself (only the last three letters of
+To log in, first go to this page and find yourself (only the last three letters of
 your surname will be shown):
 
 ```
 https://docs.google.com/spreadsheets/d/1oPmvZ9Z_kEcK4iSIOrLExDggZ1_kJRDU3Oz8NObWvjY/edit#gid=0
 ```
 
-Next to your nome you'll find a node you can ssh into, such as
+Do ssh into the VM you've been assigned.
 
 ```
-ssh ampere0001928a98.southcentralus.cloudapp.azure.com
+ssh <USER>@<VM>
 ```
 
-Do ssh into it.
+The password is the same as `<USER>`.
 
 To spawn the docker container from which you'll run the demo:
 
 ```
-docker run --gpus GGGG --rm -it devitopro:nvidia.run.YYYY
+docker run --gpus <GPU> --rm -it devitopro:nvidia.run.<BACKEND>
 ```
 
-Replace `GGGG` with the GPU ID number that you see next to your name
-in the spreadsheet.
+Replace `<BACKEND>` with either `acc` or `cuda`. This will create and take you
+to a fresh Docker container where Devito:
 
-Replace `YYYY` with either `acc` or `cuda`. This will create and take you to a
-fresh Docker container where Devito:
-
-* `YYYY=acc`: generates OpenACC,
-* `YYYY=cuda`: generates CUDA
+* `<BACKEND>=acc`: generates OpenACC,
+* `<BACKEND>=cuda`: generates CUDA
 
 The CUDA backend is, however, still in its infancy. It generates functioning
 code for our running example, but it still suffers from several performance
