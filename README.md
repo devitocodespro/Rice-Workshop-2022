@@ -29,26 +29,31 @@ variable-density forward-propagating operator:
 ### Login
 
 You will log in to a VM in the Azure Cloud that has been pre-configured with all
-the necessary to run the TTI demo on a GPU (either an NVidia V100 or A100).
+the necessary to run the TTI demo on an A100 GPU.
 
-To log in:
+To log in, first go this page and find yourself (only the last three letters of
+your surname will be shown):
+
+```
+https://docs.google.com/spreadsheets/d/1oPmvZ9Z_kEcK4iSIOrLExDggZ1_kJRDU3Oz8NObWvjY/edit#gid=0
+```
+
+Next to your nome you'll find a node you can ssh into, such as
 
 ```
 ssh ampere0001928a98.southcentralus.cloudapp.azure.com
-ssh ampere000244084a.southcentralus.cloudapp.azure.com
-ssh ampere0003a913e1.southcentralus.cloudapp.azure.com
-ssh ampere000404a8be.southcentralus.cloudapp.azure.com
-ssh ampere000580524d.southcentralus.cloudapp.azure.com
-ssh ampere0006c4bfa3.southcentralus.cloudapp.azure.com
-ssh ampere00072edd0c.southcentralus.cloudapp.azure.com
-ssh ampere0008e73259.southcentralus.cloudapp.azure.com
 ```
+
+Do ssh into it.
 
 To spawn the docker container from which you'll run the demo:
 
 ```
-docker run --gpus all --rm -it devitopro:nvidia.run.YYYY
+docker run --gpus GGGG --rm -it devitopro:nvidia.run.YYYY
 ```
+
+Replace `GGGG` with the GPU ID number that you see next to your name
+in the spreadsheet.
 
 Replace `YYYY` with either `acc` or `cuda`. This will create and take you to a
 fresh Docker container where Devito:
