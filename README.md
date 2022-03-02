@@ -100,7 +100,7 @@ Operator `TTISelfAdjointForward` jit-compiled
 2.95 s with `NvidiaCompiler`
 ```
 
-You can edit the generated file and test your changes through to the "JIT
+You can edit the generated file and test your changes through the "JIT
 backdoor" -- a mechanism in Devito that allows users and developers to test
 their hacks directly without having to interfere with the Devito compiler.
 So, make your edits, save the file, and re-run as:
