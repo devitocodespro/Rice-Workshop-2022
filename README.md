@@ -1,3 +1,5 @@
+## https://github.com/devitocodespro/Rice-Workshop-2022
+
 ## Deep dive into performance benchmarking and optimization
 
 ### Outline
