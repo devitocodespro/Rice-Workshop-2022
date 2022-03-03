@@ -44,7 +44,7 @@ Then, ssh into the VM you've been assigned.
 ssh -p 2222 <USER>@<VM>
 ```
 
-The password is the same as `<USER>`.
+The password is `DevitoWorkshop2022`.
 
 To spawn the docker container from which you'll run the demo execute
 
