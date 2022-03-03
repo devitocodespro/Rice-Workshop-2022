@@ -29,16 +29,16 @@ variable-density forward-propagating operator:
 ### Login
 
 You will log in to a VM in the Azure Cloud that has been pre-configured with all
-the necessary to run the TTI demo on an A100 GPU.
+the necessary packages to run the TTI demo on an A100 GPU.
 
-To log in, first go to this page and find yourself (only the last three letters of
+To log in, first go to this page and locate yourself (only the last three letters of
 your surname will be shown):
 
 ```
 https://docs.google.com/spreadsheets/d/1oPmvZ9Z_kEcK4iSIOrLExDggZ1_kJRDU3Oz8NObWvjY/edit#gid=0
 ```
 
-Do ssh into the VM you've been assigned.
+Then, ssh into the VM you've been assigned.
 
 ```
 ssh <USER>@<VM>
@@ -46,26 +46,26 @@ ssh <USER>@<VM>
 
 The password is the same as `<USER>`.
 
-To spawn the docker container from which you'll run the demo:
+To spawn the docker container from which you'll run the demo execute
 
 ```
 docker run --gpus <GPU> --rm -it devitopro:nvidia.run.<BACKEND>
 ```
 
-Replace `<BACKEND>` with either `acc` or `cuda`. This will create and take you
+where `<BACKEND>` should be replaced with either `acc` or `cuda`. This will create and take you
 to a fresh Docker container where Devito:
 
 * `<BACKEND>=acc`: generates OpenACC,
 * `<BACKEND>=cuda`: generates CUDA
 
-The CUDA backend is, however, still in its infancy. It generates functioning
-code for our running example, but it still suffers from several performance
+Note that the CUDA backend is still in its infancy. It generates functioning
+code for this workshops example, but still suffers from several performance
 bugs, some of which will be analyzed and fixed in this training session.
 
 
 ### Run the TTI demo
 
-As easy as:
+To run the demo simply execute the following commands
 
 ```
 cd demos/dummy_benchmark
@@ -103,7 +103,7 @@ Operator `TTISelfAdjointForward` jit-compiled
 You can edit the generated file and test your changes through the "JIT
 backdoor" -- a mechanism in Devito that allows users and developers to test
 their hacks directly without having to interfere with the Devito compiler.
-So, make your edits, save the file, and re-run as:
+Make your edits, save the file, and re-run via:
 
 ```
 DEVITO_JIT_BACKDOOR=1 python run.py -d 412 423 476 -tn 200
