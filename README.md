@@ -41,7 +41,7 @@ https://docs.google.com/spreadsheets/d/1oPmvZ9Z_kEcK4iSIOrLExDggZ1_kJRDU3Oz8NObW
 Then, ssh into the VM you've been assigned.
 
 ```
-ssh <USER>@<VM>
+ssh -p 2222 <USER>@<VM>
 ```
 
 The password is the same as `<USER>`.
