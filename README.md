@@ -118,6 +118,6 @@ More on the JIT backdoor available
 [here](https://github.com/devitocodes/devito/wiki/FAQ#can-i-manually-modify-the-c-code-generated-by-devito-and-test-these-modifications).
 
 
-### NVidia training
+### NVidia session
 
-[Hand ball over to NVidia]
+<see devito-CUDA-workshop.pdf>
